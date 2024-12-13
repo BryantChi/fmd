@@ -25,7 +25,7 @@
                     <div class="col-md-11 px-0 mx-0 mb-4">
                         <div class="row pt-lg-5 pt-0">
                             <div class="col-md-12 mb-3 text-right">
-                                <span class="cases-count">共有12件實績案例</span>
+                                <span class="cases-count">共有{{ count($caseInfos) }}件實績案例</span>
                             </div>
                             <div class="col-lg-3 mb-5 position-relative">
                                 <div class="cases-category position-relative">
@@ -42,29 +42,13 @@
                                     </div>
                                     <div class="cases-category-list position-relative px-3">
                                         <div class="cases-category-item">
-                                            <a href="" class="cases-category-link c-active">全部案例</a>
+                                            <a href="" class="cases-category-link {{ $categoryId == null ? 'c-active' : '' }}">全部案例</a>
                                         </div>
+                                        @foreach ($categoryInfo as $category)
                                         <div class="cases-category-item">
-                                            <a href="" class="cases-category-link">分類1</a>
+                                            <a href="{{ route('cases', $category->id) }}" class="cases-category-link {{ $category->id == $categoryId ? 'c-active' : '' }}">{{ $category->name }}</a>
                                         </div>
-                                        <div class="cases-category-item">
-                                            <a href="" class="cases-category-link">分類2</a>
-                                        </div>
-                                        <div class="cases-category-item">
-                                            <a href="" class="cases-category-link">分類3</a>
-                                        </div>
-                                        <div class="cases-category-item">
-                                            <a href="" class="cases-category-link">分類4</a>
-                                        </div>
-                                        <div class="cases-category-item">
-                                            <a href="" class="cases-category-link">分類5</a>
-                                        </div>
-                                        <div class="cases-category-item">
-                                            <a href="" class="cases-category-link">分類6</a>
-                                        </div>
-                                        <div class="cases-category-item">
-                                            <a href="" class="cases-category-link">分類7</a>
-                                        </div>
+                                        @endforeach
 
                                     </div>
                                 </div>
@@ -72,69 +56,19 @@
                             </div>
                             <div class="col-lg-9">
                                 <div class="row">
+                                    @foreach ($caseInfos as $case)
                                     <div class="col-lg-4 col-md-6 col-sm-6 mb-3 text-center">
-                                        <a href="{{ route('cases_inner') }}">
-                                            <img src="{{ asset('assets/images/00-hp/case_pic1.jpg') }}" class="img-fluid case-img" alt="">
-                                            <h5 class="mt-3 mb-1 case-name">7月案例1</h5>
-                                            <p class="see-count">觀看人次：154</p>
+                                        <a href="{{ route('cases_inner', [$case->id]) }}">
+                                            <img src="{{ env('APP_URL') . '/uploads/' . $case->case_front_image }}" class="img-fluid case-img" alt="">
+                                            <h5 class="mt-3 mb-1 case-name">{{ $case->case_title }}</h5>
+                                            <p class="see-count">觀看人次：{{ $case->case_pv }}</p>
                                         </a>
+                                    </div>
+                                    @endforeach
 
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 mb-3 text-center">
-                                        <img src="{{ asset('assets/images/00-hp/case_pic2.jpg') }}" class="img-fluid case-img" alt="">
-                                        <h5 class="mt-3 mb-1 case-name">7月案例2</h5>
-                                        <p class="see-count">觀看人次：154</p>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 mb-3 text-center">
-                                        <img src="{{ asset('assets/images/00-hp/case_pic3.jpg') }}" class="img-fluid case-img" alt="">
-                                        <h5 class="mt-3 mb-1 case-name">7月案例3</h5>
-                                        <p class="see-count">觀看人次：154</p>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 mb-3 text-center">
-                                        <img src="{{ asset('assets/images/00-hp/case_pic4.jpg') }}" class="img-fluid case-img" alt="">
-                                        <h5 class="mt-3 mb-1 case-name">7月案例1</h5>
-                                        <p class="see-count">觀看人次：154</p>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 mb-3 text-center">
-                                        <img src="{{ asset('assets/images/00-hp/case_pic5.jpg') }}" class="img-fluid case-img" alt="">
-                                        <h5 class="mt-3 mb-1 case-name">7月案例2</h5>
-                                        <p class="see-count">觀看人次：154</p>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 mb-3 text-center">
-                                        <img src="{{ asset('assets/images/00-hp/case_pic6.jpg') }}" class="img-fluid case-img" alt="">
-                                        <h5 class="mt-3 mb-1 case-name">7月案例3</h5>
-                                        <p class="see-count">觀看人次：154</p>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 mb-3 text-center">
-                                        <img src="{{ asset('assets/images/00-hp/case_pic7.jpg') }}" class="img-fluid case-img" alt="">
-                                        <h5 class="mt-3 mb-1 case-name">7月案例1</h5>
-                                        <p class="see-count">觀看人次：154</p>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 mb-3 text-center">
-                                        <img src="{{ asset('assets/images/00-hp/case_pic8.jpg') }}" class="img-fluid case-img" alt="">
-                                        <h5 class="mt-3 mb-1 case-name">7月案例2</h5>
-                                        <p class="see-count">觀看人次：154</p>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 mb-3 text-center">
-                                        <img src="{{ asset('assets/images/00-hp/case_pic1.jpg') }}" class="img-fluid case-img" alt="">
-                                        <h5 class="mt-3 mb-1 case-name">7月案例3</h5>
-                                        <p class="see-count">觀看人次：154</p>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 mb-3 text-center">
-                                        <img src="{{ asset('assets/images/00-hp/case_pic2.jpg') }}" class="img-fluid case-img" alt="">
-                                        <h5 class="mt-3 mb-1 case-name">7月案例1</h5>
-                                        <p class="see-count">觀看人次：154</p>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 mb-3 text-center">
-                                        <img src="{{ asset('assets/images/00-hp/case_pic3.jpg') }}" class="img-fluid case-img" alt="">
-                                        <h5 class="mt-3 mb-1 case-name">7月案例2</h5>
-                                        <p class="see-count">觀看人次：154</p>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 mb-3 text-center">
-                                        <img src="{{ asset('assets/images/00-hp/case_pic4.jpg') }}" class="img-fluid case-img" alt="">
-                                        <h5 class="mt-3 mb-1 case-name">7月案例3</h5>
-                                        <p class="see-count">觀看人次：154</p>
-                                    </div>
+                                </div>
+                                <div class="overflow-auto mb-3">
+                                    {{ $caseInfos->onEachSide(3)->links('layouts_main.custom-pagination') }}
                                 </div>
                             </div>
 

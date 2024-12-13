@@ -26,4 +26,9 @@ class CreateCaseInfoRequest extends FormRequest
     {
         return CaseInfo::$rules;
     }
+
+    public function messages()
+    {
+        return CaseInfo::$messages;
+    }
 }

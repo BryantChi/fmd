@@ -9,7 +9,7 @@
                 <th>Og:title</th>
                 <th>Og:description</th>
                 <th>Og:site Name</th>
-                <th>Action</th>
+                <th>操作</th>
             </tr>
         </thead>
         <tbody>

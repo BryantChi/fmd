@@ -11,7 +11,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{{ $seoInfo->og_title }}" />
     <meta property="og:description" content="{{ $seoInfo->og_discription }}" />
-    <meta property="og:image" content="{{ asset('assets/img/fimgs/fbimg.jpg') }}" />
+    <meta property="og:image" content="{{ asset('assets/images/fimgs/fbimg.jpg') }}" />
     <meta property="og:url" content="{{ url()->full() }}" />
     <meta property="og:site_name" content="{{ $seoInfo->og_site_name }}" />
     <title>{{ $seoInfo->title }}</title>

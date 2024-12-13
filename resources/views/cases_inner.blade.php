@@ -39,29 +39,13 @@
                                     </div>
                                     <div class="cases-category-list position-relative px-3">
                                         <div class="cases-category-item">
-                                            <a href="" class="cases-category-link">全部案例</a>
+                                            <a href="{{ route('cases') }}" class="cases-category-link {{ $categoryId == null ? 'c-active' : '' }}">全部案例</a>
                                         </div>
+                                        @foreach ($categoryInfo as $category)
                                         <div class="cases-category-item">
-                                            <a href="" class="cases-category-link c-active">分類1</a>
+                                            <a href="{{ route('cases', $category->id) }}" class="cases-category-link {{ $category->id == $categoryId ? 'c-active' : '' }}">{{ $category->name }}</a>
                                         </div>
-                                        <div class="cases-category-item">
-                                            <a href="" class="cases-category-link">分類2</a>
-                                        </div>
-                                        <div class="cases-category-item">
-                                            <a href="" class="cases-category-link">分類3</a>
-                                        </div>
-                                        <div class="cases-category-item">
-                                            <a href="" class="cases-category-link">分類4</a>
-                                        </div>
-                                        <div class="cases-category-item">
-                                            <a href="" class="cases-category-link">分類5</a>
-                                        </div>
-                                        <div class="cases-category-item">
-                                            <a href="" class="cases-category-link">分類6</a>
-                                        </div>
-                                        <div class="cases-category-item">
-                                            <a href="" class="cases-category-link">分類7</a>
-                                        </div>
+                                        @endforeach
 
                                     </div>
                                 </div>
@@ -69,25 +53,19 @@
                             </div>
                             <div class="col-lg-9">
                                 <div class="case-inner-title">
-                                    <h3 class="mb-0 text-center">7月案例1</h3>
+                                    <h3 class="mb-0 text-center">{{ $caseInfo->case_title }}</h3>
                                 </div>
 
                                 <div class="case-inner-content pt-3 mb-4 px-lg-auto px-3">
                                     <div class="d-flex justify-content-end">
-                                        <p class="mr-3 cases-info">分類1|觀看人次：154</p>
+                                        <p class="mr-3 cases-info">{{ App\Models\Admin\CaseCategoryInfo::find($caseInfo->category)->value('name') }}|觀看人次：{{ $caseInfo->case_pv }}</p>
                                     </div>
                                     <div class="row mt-4 justify-content-center">
+                                        {{-- <div class="col-lg-11 mb-3">
+                                            <img src="{{ env('APP_URL', 'https://fmd.tw') . '/uploads/' . $caseInfo->case_front_image }}" class="img-fluid w-100" alt="">
+                                        </div> --}}
                                         <div class="col-lg-11 mb-3">
-                                            <img src="images/04/04pic.jpg" class="img-fluid" alt="">
-                                        </div>
-                                        <div class="col-lg-11 mb-3">
-                                            <p>
-                                                這個住宅浴室整修項目中，我們重新設計並鋪設了地磚和壁磚，同時進行了全面的防水處理。<br>
-                                                我們選用防滑耐磨的磁磚，並精心設計了淋浴區和浴缸周邊的磁磚拼貼，確保浴室既美觀又實用，客戶對最終效果非常滿意。<br><br>
-
-                                                FMD將繼續以客戶滿意為目標，提供高品質的服務，為更多的項目注入我們的專業技術和熱情。<br>
-                                                立即聯繫我們，了解更多關於我們的服務和案例，共同創造美好空間！
-                                            </p>
+                                            {!! $caseInfo->case_content !!}
                                         </div>
                                     </div>
                                 </div>

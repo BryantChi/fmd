@@ -26,4 +26,9 @@ class CreateOrderInfoRequest extends FormRequest
     {
         return OrderInfo::$rules;
     }
+
+    public function messages()
+    {
+        return OrderInfo::$messages;
+    }
 }

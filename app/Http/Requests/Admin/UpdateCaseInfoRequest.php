@@ -25,7 +25,12 @@ class UpdateCaseInfoRequest extends FormRequest
     public function rules()
     {
         $rules = CaseInfo::$rules;
-        
+
         return $rules;
+    }
+
+    public function messages()
+    {
+        return CaseInfo::$messages;
     }
 }

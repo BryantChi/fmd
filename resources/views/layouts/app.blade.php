@@ -74,7 +74,7 @@
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <!-- User image -->
                         <li class="user-header bg-gray">
-                            <img src="{{ asset('assets/img/fimgs/icon128.png') }}"
+                            <img src="{{ asset('assets/images/fimgs/icon128.png') }}"
                                 class="img-circle elevation-2 bg-white" alt="User Image">
                             <p>
                                 @auth

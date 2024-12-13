@@ -30,10 +30,12 @@ class CaseInfo extends EloquentModel
 
 
     public $fillable = [
-        'occupation',
+        'case_front_image',
         'name',
+        'category',
         'case_title',
-        'case_content'
+        'case_content',
+        'case_pv'
     ];
 
     /**
@@ -43,9 +45,12 @@ class CaseInfo extends EloquentModel
      */
     protected $casts = [
         'id' => 'integer',
-        'occupation' => 'string',
+        'case_front_image' => 'json',
         'name' => 'string',
-        'case_title' => 'string'
+        'category' => 'string',
+        'case_title' => 'string',
+        'case_content' => 'string',
+        'case_pv' => 'integer'
     ];
 
     /**
@@ -54,8 +59,16 @@ class CaseInfo extends EloquentModel
      * @var array
      */
     public static $rules = [
-
+        'case_front_image' => 'image|nullable|max:2048',
     ];
 
+    public static $messages = [
+        'case_front_image.image' => '請上傳圖片',
+    ];
+
+    public function incrementViews()
+    {
+        $this->increment('case_pv');
+    }
 
 }

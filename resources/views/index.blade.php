@@ -19,7 +19,8 @@
                                 <div class="ser-box text-white">
                                     <div class="ser-header text-center">
                                         <p>Service 01</p>
-                                        <img src="{{asset('assets/images/00-hp/ser_icon01.png')}}" class="img-fluid" alt="">
+                                        <img src="{{ asset('assets/images/00-hp/ser_icon01.png') }}" class="img-fluid"
+                                            alt="">
                                         <h4>新建磁磚 • 泥作工程</h4>
                                     </div>
                                     <div class="ser-body px-lg-5 px-3">
@@ -34,7 +35,8 @@
                                 <div class="ser-box text-white">
                                     <div class="ser-header text-center">
                                         <p>Service 02</p>
-                                        <img src="{{asset('assets/images/00-hp/ser_icon02.png')}}" class="img-fluid" alt="">
+                                        <img src="{{ asset('assets/images/00-hp/ser_icon02.png') }}" class="img-fluid"
+                                            alt="">
                                         <h4>地磚爆裂 • 地磚修補</h4>
                                     </div>
                                     <div class="ser-body px-lg-5 px-3">
@@ -49,7 +51,8 @@
                                 <div class="ser-box text-white">
                                     <div class="ser-header text-center">
                                         <p>Service 03</p>
-                                        <img src="{{('assets/images/00-hp/ser_icon03.png')}}" class="img-fluid" alt="">
+                                        <img src="{{ 'assets/images/00-hp/ser_icon03.png' }}" class="img-fluid"
+                                            alt="">
                                         <h4>壁磚補修 • 地坪粉刷</h4>
                                     </div>
                                     <div class="ser-body px-lg-5 px-3">
@@ -64,7 +67,8 @@
                                 <div class="ser-box text-white">
                                     <div class="ser-header text-center">
                                         <p>Service 04</p>
-                                        <img src="{{asset('assets/images/00-hp/ser_icon04.png')}}" class="img-fluid" alt="">
+                                        <img src="{{ asset('assets/images/00-hp/ser_icon04.png') }}" class="img-fluid"
+                                            alt="">
                                         <h4>浴室整修 • 防水工程</h4>
                                     </div>
                                     <div class="ser-body px-lg-5 px-3">
@@ -79,7 +83,8 @@
                                 <div class="ser-box text-white">
                                     <div class="ser-header text-center">
                                         <p>Service 05</p>
-                                        <img src="{{asset('assets/images/00-hp/ser_icon05.png')}}" class="img-fluid" alt="">
+                                        <img src="{{ asset('assets/images/00-hp/ser_icon05.png') }}" class="img-fluid"
+                                            alt="">
                                         <h4>工程承包一站式服務</h4>
                                     </div>
                                     <div class="ser-body px-lg-5 px-3">
@@ -136,7 +141,8 @@
                     </div>
                     <div class="col-lg-5 align-self-center py-3 position-relative">
                         <div class="ab-pic-bg"></div>
-                        <img src="{{asset('assets/images/00-hp/ab_pic.jpg')}}" class="img-fluid ab-pic-img" alt="">
+                        <img src="{{ asset('assets/images/00-hp/ab_pic.jpg') }}" class="img-fluid ab-pic-img"
+                            alt="">
 
                     </div>
                 </div>
@@ -162,11 +168,14 @@
                     </div>
 
                     <div class="col-lg-11">
+                        @php
+                            $planInfos = App\Models\Admin\PlanInfo::all();
+                        @endphp
                         <div class="row">
                             <div class="col-lg-4 mb-3">
                                 <div class="order-box">
                                     <div class="order-title text-center py-3">
-                                        <h3 class="mb-0">A方案 3-4坪</h3>
+                                        <h3 class="mb-0">{{ $planInfos[0]->plan_name . ' ' . $planInfos[0]->plan_sqm }}</h3>
                                     </div>
                                     <div class="order-content text-center py-3 px-3">
                                         <h6 class="text-uppercase">風格選擇 <span>style choices</span></h6>
@@ -197,16 +206,19 @@
                                         <div class="tab-content" id="myTabContentA">
                                             <div class="tab-pane fade show active" id="sca1" role="tabpanel"
                                                 aria-labelledby="sca1-tab">
-                                                <img src="{{asset('assets/images/00-hp/order_pic.jpg')}}" class="img-fluid" alt="">
+                                                <img src="{{ env('APP_URL'). '/uploads/' .$planInfos[0]->plan_style_1 }}" class="img-fluid" alt="">
                                             </div>
                                             <div class="tab-pane fade" id="sca2" role="tabpanel"
-                                                aria-labelledby="sca2-tab">...
+                                                aria-labelledby="sca2-tab">
+                                                <img src="{{ env('APP_URL'). '/uploads/' .$planInfos[0]->plan_style_2 }}" class="img-fluid" alt="">
                                             </div>
                                             <div class="tab-pane fade" id="sca3" role="tabpanel"
-                                                aria-labelledby="sca3-tab">...
+                                                aria-labelledby="sca3-tab">
+                                                <img src="{{ env('APP_URL'). '/uploads/' .$planInfos[0]->plan_style_3 }}" class="img-fluid" alt="">
                                             </div>
                                             <div class="tab-pane fade" id="sca4" role="tabpanel"
-                                                aria-labelledby="sca4-tab">...
+                                                aria-labelledby="sca4-tab">
+                                                <img src="{{ env('APP_URL'). '/uploads/' .$planInfos[0]->plan_style_4 }}" class="img-fluid" alt="">
                                             </div>
                                         </div>
 
@@ -232,7 +244,7 @@
                             <div class="col-lg-4 mb-3">
                                 <div class="order-box">
                                     <div class="order-title text-center py-3">
-                                        <h3 class="mb-0">B方案 5-7坪</h3>
+                                        <h3 class="mb-0">{{ $planInfos[1]->plan_name . ' ' . $planInfos[1]->plan_sqm }}</h3>
                                     </div>
                                     <div class="order-content text-center py-3 px-3">
                                         <h6 class="text-uppercase">風格選擇 <span>style choices</span></h6>
@@ -263,16 +275,19 @@
                                         <div class="tab-content" id="myTabContentB">
                                             <div class="tab-pane fade show active" id="scb1" role="tabpanel"
                                                 aria-labelledby="scb1-tab">
-                                                <img src="{{asset('assets/images/00-hp/order_pic.jpg')}}" class="img-fluid" alt="">
+                                                <img src="{{ env('APP_URL'). '/uploads/' .$planInfos[1]->plan_style_1 }}" class="img-fluid" alt="">
                                             </div>
                                             <div class="tab-pane fade" id="scb2" role="tabpanel"
-                                                aria-labelledby="scb2-tab">...
+                                                aria-labelledby="scb2-tab">
+                                                <img src="{{ env('APP_URL'). '/uploads/' .$planInfos[1]->plan_style_2 }}" class="img-fluid" alt="">
                                             </div>
                                             <div class="tab-pane fade" id="scb3" role="tabpanel"
-                                                aria-labelledby="scb3-tab">...
+                                                aria-labelledby="scb3-tab">
+                                                <img src="{{ env('APP_URL'). '/uploads/' .$planInfos[1]->plan_style_3 }}" class="img-fluid" alt="">
                                             </div>
                                             <div class="tab-pane fade" id="scb4" role="tabpanel"
-                                                aria-labelledby="scb4-tab">...
+                                                aria-labelledby="scb4-tab">
+                                                <img src="{{ env('APP_URL'). '/uploads/' .$planInfos[1]->plan_style_4 }}" class="img-fluid" alt="">
                                             </div>
                                         </div>
 
@@ -298,7 +313,7 @@
                             <div class="col-lg-4 mb-3">
                                 <div class="order-box">
                                     <div class="order-title text-center py-3">
-                                        <h3 class="mb-0">C方案 8-10坪</h3>
+                                        <h3 class="mb-0">{{ $planInfos[2]->plan_name . ' ' . $planInfos[2]->plan_sqm }}</h3>
                                     </div>
                                     <div class="order-content text-center py-3 px-3">
                                         <h6 class="text-uppercase">風格選擇 <span>style choices</span></h6>
@@ -329,16 +344,19 @@
                                         <div class="tab-content" id="myTabContentC">
                                             <div class="tab-pane fade show active" id="scc1" role="tabpanel"
                                                 aria-labelledby="scc1-tab">
-                                                <img src="{{asset('assets/images/00-hp/order_pic.jpg')}}" class="img-fluid" alt="">
+                                                <img src="{{ env('APP_URL'). '/uploads/' .$planInfos[2]->plan_style_1 }}" class="img-fluid" alt="">
                                             </div>
                                             <div class="tab-pane fade" id="scc2" role="tabpanel"
-                                                aria-labelledby="scc2-tab">...
+                                                aria-labelledby="scc2-tab">
+                                                <img src="{{ env('APP_URL'). '/uploads/' .$planInfos[2]->plan_style_2 }}" class="img-fluid" alt="">
                                             </div>
                                             <div class="tab-pane fade" id="scc3" role="tabpanel"
-                                                aria-labelledby="scc3-tab">...
+                                                aria-labelledby="scc3-tab">
+                                                <img src="{{ env('APP_URL'). '/uploads/' .$planInfos[2]->plan_style_3 }}" class="img-fluid" alt="">
                                             </div>
                                             <div class="tab-pane fade" id="scc4" role="tabpanel"
-                                                aria-labelledby="scc4-tab">...
+                                                aria-labelledby="scc4-tab">
+                                                <img src="{{ env('APP_URL'). '/uploads/' .$planInfos[2]->plan_style_4 }}" class="img-fluid" alt="">
                                             </div>
                                         </div>
 
@@ -390,46 +408,19 @@
 
                     <div class="col-lg-11">
                         <div class="row">
-                            <div class="col-lg-3 col-md-6 col-sm-6 mb-3 text-center">
-                                <img src="{{ asset('assets/images/00-hp/case_pic1.jpg') }}" class="img-fluid case-img" alt="">
-                                <h5 class="mt-3 mb-1 case-name">7月案例1</h5>
-                                <p class="see-count">觀看人次：154</p>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 mb-3 text-center">
-                                <img src="{{ asset('assets/images/00-hp/case_pic2.jpg') }}" class="img-fluid case-img" alt="">
-                                <h5 class="mt-3 mb-1 case-name">7月案例2</h5>
-                                <p class="see-count">觀看人次：154</p>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 mb-3 text-center">
-                                <img src="{{ asset('assets/images/00-hp/case_pic3.jpg') }}" class="img-fluid case-img" alt="">
-                                <h5 class="mt-3 mb-1 case-name">7月案例3</h5>
-                                <p class="see-count">觀看人次：154</p>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 mb-3 text-center">
-                                <img src="{{ asset('assets/images/00-hp/case_pic4.jpg') }}" class="img-fluid case-img" alt="">
-                                <h5 class="mt-3 mb-1 case-name">7月案例4</h5>
-                                <p class="see-count">觀看人次：154</p>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 mb-3 text-center">
-                                <img src="{{ asset('assets/images/00-hp/case_pic5.jpg') }}" class="img-fluid case-img" alt="">
-                                <h5 class="mt-3 mb-1 case-name">7月案例5</h5>
-                                <p class="see-count">觀看人次：154</p>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 mb-3 text-center">
-                                <img src="{{ asset('assets/images/00-hp/case_pic6.jpg') }}" class="img-fluid case-img" alt="">
-                                <h5 class="mt-3 mb-1 case-name">7月案例6</h5>
-                                <p class="see-count">觀看人次：154</p>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 mb-3 text-center">
-                                <img src="{{ asset('assets/images/00-hp/case_pic7.jpg') }}" class="img-fluid case-img" alt="">
-                                <h5 class="mt-3 mb-1 case-name">7月案例7</h5>
-                                <p class="see-count">觀看人次：154</p>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 mb-3 text-center">
-                                <img src="{{ asset('assets/images/00-hp/case_pic8.jpg') }}" class="img-fluid case-img" alt="">
-                                <h5 class="mt-3 mb-1 case-name">7月案例8</h5>
-                                <p class="see-count">觀看人次：154</p>
-                            </div>
+                            @php
+                                $caseInfos = App\Models\Admin\CaseInfo::orderBy('created_at', 'desc')->limit(8)->get();
+                            @endphp
+                            @foreach ($caseInfos as $case)
+                                <div class="col-lg-3 col-md-6 col-sm-6 mb-3 text-center">
+                                    <a href="{{ route('cases_inner', [$case->id]) }}">
+                                        <img src="{{ env('APP_URL') . '/uploads/' . $case->case_front_image }}"
+                                            class="img-fluid case-img" alt="">
+                                        <h5 class="mt-3 mb-1 case-name">{{ $case->case_title }}</h5>
+                                        <p class="see-count">觀看人次：{{ $case->case_pv }}</p>
+                                    </a>
+                                </div>
+                            @endforeach
 
 
                             <div class="col-12 mt-4 mb-4 text-center">
@@ -469,7 +460,7 @@
                             <div class="col-lg-auto mb-4">
                                 <div class="process-item">
                                     <div class="process-icon text-center mb-3">
-                                        <img src="{{asset('assets/images/00-hp/pro_icon01.png')}}" class="img-fluid">
+                                        <img src="{{ asset('assets/images/00-hp/pro_icon01.png') }}" class="img-fluid">
                                     </div>
                                     <div class="process-text mx-auto">
                                         <h5 class="text-light d-flex align-items-center mb-3"><span
@@ -483,13 +474,14 @@
                                 </div>
                             </div>
                             <div class="col-auto mb-4 align-self-center text-center d-lg-block d-none">
-                                <img src="{{asset('assets/images/00-hp/pro_arrow.png')}}" class="img-fluid img-arrow-pro" alt="">
+                                <img src="{{ asset('assets/images/00-hp/pro_arrow.png') }}"
+                                    class="img-fluid img-arrow-pro" alt="">
                             </div>
 
                             <div class="col-lg-auto mb-4">
                                 <div class="process-item">
                                     <div class="process-icon text-center mb-3">
-                                        <img src="{{asset('assets/images/00-hp/pro_icon02.png')}}" class="img-fluid">
+                                        <img src="{{ asset('assets/images/00-hp/pro_icon02.png') }}" class="img-fluid">
                                     </div>
                                     <div class="process-text mx-auto">
                                         <h5 class="text-light d-flex align-items-center mb-3"><span
@@ -504,14 +496,15 @@
                                 </div>
                             </div>
                             <div class="col-auto mb-4 align-self-center text-center d-lg-block d-none">
-                                <img src="{{asset('assets/images/00-hp/pro_arrow.png')}}" class="img-fluid img-arrow-pro" alt="">
+                                <img src="{{ asset('assets/images/00-hp/pro_arrow.png') }}"
+                                    class="img-fluid img-arrow-pro" alt="">
                             </div>
 
                             <div class="col-lg-12 d-block d-ls-none"></div>
                             <div class="col-lg-auto mb-4">
                                 <div class="process-item">
                                     <div class="process-icon text-center mb-3">
-                                        <img src="{{asset('assets/images/00-hp/pro_icon03.png')}}" class="img-fluid">
+                                        <img src="{{ asset('assets/images/00-hp/pro_icon03.png') }}" class="img-fluid">
                                     </div>
                                     <div class="process-text mx-auto">
                                         <h5 class="text-light d-flex align-items-center mb-3"><span
@@ -526,13 +519,14 @@
                                 </div>
                             </div>
                             <div class="col-auto mb-4 align-self-center text-center d-lg-block d-none">
-                                <img src="{{asset('assets/images/00-hp/pro_arrow.png')}}" class="img-fluid img-arrow-pro" alt="">
+                                <img src="{{ asset('assets/images/00-hp/pro_arrow.png') }}"
+                                    class="img-fluid img-arrow-pro" alt="">
                             </div>
 
                             <div class="col-lg-auto mb-4">
                                 <div class="process-item">
                                     <div class="process-icon text-center mb-3">
-                                        <img src="{{asset('assets/images/00-hp/pro_icon04.png')}}" class="img-fluid">
+                                        <img src="{{ asset('assets/images/00-hp/pro_icon04.png') }}" class="img-fluid">
                                     </div>
                                     <div class="process-text mx-auto">
                                         <h5 class="text-light d-flex align-items-center mb-3"><span
@@ -552,7 +546,7 @@
                             <div class="col-lg-auto mb-4">
                                 <div class="process-item">
                                     <div class="process-icon text-center mb-3">
-                                        <img src="{{asset('assets/images/00-hp/pro_icon05.png')}}" class="img-fluid">
+                                        <img src="{{ asset('assets/images/00-hp/pro_icon05.png') }}" class="img-fluid">
                                     </div>
                                     <div class="process-text mx-auto">
                                         <h5 class="text-light d-flex align-items-center mb-3"><span
@@ -568,13 +562,14 @@
                                 </div>
                             </div>
                             <div class="col-auto mb-4 align-self-center text-center d-lg-block d-none">
-                                <img src="{{asset('assets/images/00-hp/pro_arrow.png')}}" class="img-fluid img-arrow-pro" alt="">
+                                <img src="{{ asset('assets/images/00-hp/pro_arrow.png') }}"
+                                    class="img-fluid img-arrow-pro" alt="">
                             </div>
 
                             <div class="col-lg-auto mb-4">
                                 <div class="process-item">
                                     <div class="process-icon text-center mb-3">
-                                        <img src="{{asset('assets/images/00-hp/pro_icon06.png')}}" class="img-fluid">
+                                        <img src="{{ asset('assets/images/00-hp/pro_icon06.png') }}" class="img-fluid">
                                     </div>
                                     <div class="process-text mx-auto">
                                         <h5 class="text-light d-flex align-items-center mb-3"><span
@@ -591,14 +586,15 @@
                                 </div>
                             </div>
                             <div class="col-auto mb-4 align-self-center text-center d-lg-block d-none">
-                                <img src="{{asset('assets/images/00-hp/pro_arrow.png')}}" class="img-fluid img-arrow-pro" alt="">
+                                <img src="{{ asset('assets/images/00-hp/pro_arrow.png') }}"
+                                    class="img-fluid img-arrow-pro" alt="">
                             </div>
 
                             <div class="col-lg-12 d-block d-ls-none"></div>
                             <div class="col-lg-auto mb-4">
                                 <div class="process-item">
                                     <div class="process-icon text-center mb-3">
-                                        <img src="{{asset('assets/images/00-hp/pro_icon07.png')}}" class="img-fluid">
+                                        <img src="{{ asset('assets/images/00-hp/pro_icon07.png') }}" class="img-fluid">
                                     </div>
                                     <div class="process-text mx-auto">
                                         <h5 class="text-light d-flex align-items-center mb-3"><span
@@ -614,13 +610,14 @@
                                 </div>
                             </div>
                             <div class="col-auto mb-4 align-self-center text-center d-lg-block d-none">
-                                <img src="{{asset('assets/images/00-hp/pro_arrow.png')}}" class="img-fluid img-arrow-pro" alt="">
+                                <img src="{{ asset('assets/images/00-hp/pro_arrow.png') }}"
+                                    class="img-fluid img-arrow-pro" alt="">
                             </div>
 
                             <div class="col-lg-auto mb-4">
                                 <div class="process-item">
                                     <div class="process-icon text-center mb-3">
-                                        <img src="{{asset('assets/images/00-hp/pro_icon08.png')}}" class="img-fluid">
+                                        <img src="{{ asset('assets/images/00-hp/pro_icon08.png') }}" class="img-fluid">
                                     </div>
                                     <div class="process-text mx-auto">
                                         <h5 class="text-light d-flex align-items-center mb-3"><span

@@ -69,7 +69,8 @@ class PlanInfo extends EloquentModel
         'plan_style_1' => 'image|nullable|max:2048',
         'plan_style_2' => 'image|nullable|max:2048',
         'plan_style_3' => 'image|nullable|max:2048',
-        'plan_style_4' => 'image|nullable|max:2048'
+        'plan_style_4' => 'image|nullable|max:2048',
+        'plan_price' => 'required|integer'
     ];
 
     public static $messages = [
@@ -78,6 +79,7 @@ class PlanInfo extends EloquentModel
         'plan_style_2.image' => '請上傳圖片',
         'plan_style_3.image' => '請上傳圖片',
         'plan_style_4.image' => '請上傳圖片',
+        'plan_price.required' => '請輸入方案價格'
     ];
 
 

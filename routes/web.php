@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CasesController;
+use App\Http\Controllers\OrderOnlineController;
 use App\Repositories\Admin\SeoSettingRepository;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -15,8 +17,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-$seoInfo = SeoSettingRepository::getInfo('/*');
-
 Route::any('/clear-cache', function () {
     Artisan::call('optimize:clear');
     Artisan::call('cache:clear');
@@ -30,43 +30,45 @@ Route::any('/clear-cache', function () {
     return redirect()->route('index');
 });
 
-Route::get('/', function () use ($seoInfo) {
+Route::get('/', function () {
+    $seoInfo = SeoSettingRepository::getInfo('/*');
     return view('index')->with('seoInfo', $seoInfo);
 })->name('index');
 
-Route::get('/about', function () use ($seoInfo) {
+Route::get('/about', function () {
+    $seoInfo = SeoSettingRepository::getInfo('/about');
     return view('about')->with('seoInfo', $seoInfo);
 })->name('about');
 
-Route::get('/service', function () use ($seoInfo) {
+Route::get('/service', function () {
+    $seoInfo = SeoSettingRepository::getInfo('/service');
     return view('service')->with('seoInfo', $seoInfo);
 })->name('service');
 
-Route::get('/process', function () use ($seoInfo) {
+Route::get('/process', function () {
+    $seoInfo = SeoSettingRepository::getInfo('/process');
     return view('process')->with('seoInfo', $seoInfo);
 })->name('process');
 
-Route::get('/cases', function () use ($seoInfo) {
-    return view('cases')->with('seoInfo', $seoInfo);
-})->name('cases');
+Route::any('/cases/{category?}', [CasesController::class, 'index'])->name('cases');
 
-Route::get('/cases_inner', function () use ($seoInfo) {
-    return view('cases_inner')->with('seoInfo', $seoInfo);
-})->name('cases_inner');
+Route::any('/cases_inner/{id}/{category?}', [CasesController::class, 'show'])->name('cases_inner');
 
-Route::get('/faq', function () use ($seoInfo) {
+Route::get('/faq', function () {
+    $seoInfo = SeoSettingRepository::getInfo('/faq');
     return view('faq')->with('seoInfo', $seoInfo);
 })->name('faq');
 
-Route::get('/order_online', function () use ($seoInfo) {
-    return view('order_online')->with('seoInfo', $seoInfo);
-})->name('order_online');
+Route::get('/order_online', [OrderOnlineController::class, 'index'])->name('order_online');
 
-Route::get('/order_pay_atm', function () use ($seoInfo) {
-    return view('order_pay_atm')->with('seoInfo', $seoInfo);
-})->name('order_pay_atm');
+Route::any('/order_online/submit', [OrderOnlineController::class, 'submit'])->name('order_online.submit');
 
-Route::get('/order_pay_credit', function () use ($seoInfo) {
+Route::any('/order_pay_atm', [OrderOnlineController::class, 'atm'])->name('order_pay_atm');
+
+Route::any('/update-order/{id}', [OrderOnlineController::class, 'updateOrder'])->name('update-order');
+
+Route::get('/order_pay_credit', function () {
+    $seoInfo = SeoSettingRepository::getInfo('/order_pay_credit');
     return view('order_pay_credit')->with('seoInfo', $seoInfo);
 })->name('order_pay_credit');
 
@@ -106,4 +108,9 @@ Route::prefix('admin')->group(function () {
         Route::any('adminUsers/update/{id}', [App\Http\Controllers\Admin\AdminAccountController::class, 'update'])->name('admin.adminUsers.update');
         Route::any('adminUsers/destroy/{id}', [App\Http\Controllers\Admin\AdminAccountController::class, 'destroy'])->name('admin.adminUsers.destroy');
     });
+});
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::resource('caseCategoryInfos', App\Http\Controllers\Admin\CaseCategoryInfoController::class, ["as" => 'admin']);
 });

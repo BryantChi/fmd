@@ -7,13 +7,13 @@
                 <div class="col-sm-6">
                     <h1>方案管理</h1>
                 </div>
-                <div class="col-sm-6">
+                {{-- <div class="col-sm-6">
                     <a class="btn btn-primary float-right"
                        href="{{ route('admin.planInfos.create') }}">
                        <i class="fas fa-plus"></i>
                        新增
                     </a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>

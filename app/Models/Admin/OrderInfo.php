@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class OrderInfo extends EloquentModel
 {
+
     use SoftDeletes;
 
 
@@ -36,7 +37,22 @@ class OrderInfo extends EloquentModel
 
     protected $dates = ['deleted_at'];
 
+    const PAYMENT_METHOD = [
+        'atm' => 'ATM轉帳匯款',
+        'credit' => '線上刷卡'
+    ];
 
+    const PAYMENT_STATUS = [
+        'pending' => '待付款',
+        'paid' => '已付款',
+        'failed' => '付款失敗',
+    ];
+
+    const ORDER_STATUS = [
+        'pending' => '待處理',
+        'completed' => '已完成',
+        'canceled' => '已取消',
+    ];
 
     public $fillable = [
         'order_number',
@@ -73,7 +89,7 @@ class OrderInfo extends EloquentModel
         'address' => 'string',
         'payment_method' => 'string',
         'payment_status' => 'string',
-        'amount' => 'decimal:10,2',
+        'amount' => 'decimal:2',
         'order_details' => 'json',
         'order_status' => 'string',
         'third_party_ref' => 'string',
@@ -85,7 +101,7 @@ class OrderInfo extends EloquentModel
      * @var array
      */
     public static $rules = [
-        'order_number' => 'required|unique:order_infos',
+        // 'order_number' => 'required|unique:order_infos',
         'name' => 'nullable',
         'phone' => 'nullable',
         'email' => 'nullable',
@@ -102,7 +118,7 @@ class OrderInfo extends EloquentModel
     ];
 
     public static $messages = [
-        'order_number.unique' => '訂單編號已存在',
+        // 'order_number.unique' => '訂單編號已存在',
     ];
 
 

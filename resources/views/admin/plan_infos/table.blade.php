@@ -9,7 +9,7 @@
                 <th>方案 Style 3</th>
                 <th>方案 Style 4</th>
                 <th>方案價格</th>
-                <th>Action</th>
+                <th>操作</th>
             </tr>
         </thead>
         <tbody>
@@ -17,11 +17,11 @@
                 <tr>
                     <td>{{ $planInfo->plan_name }}</td>
                     <td>{{ $planInfo->plan_sqm }}</td>
-                    <td>{{ $planInfo->plan_style_1 }}</td>
-                    <td>{{ $planInfo->plan_style_2 }}</td>
-                    <td>{{ $planInfo->plan_style_3 }}</td>
-                    <td>{{ $planInfo->plan_style_4 }}</td>
-                    <td>{{ $planInfo->plan_price }}</td>
+                    <td><img src="{{ env('APP_URL'). '/uploads/' .$planInfo->plan_style_1 }}" class="img-fluid img-thumbnail" width="120" alt=""></td>
+                    <td><img src="{{ env('APP_URL'). '/uploads/' .$planInfo->plan_style_2 }}" class="img-fluid img-thumbnail" width="120" alt=""></td>
+                    <td><img src="{{ env('APP_URL'). '/uploads/' .$planInfo->plan_style_3 }}" class="img-fluid img-thumbnail" width="120" alt=""></td>
+                    <td><img src="{{ env('APP_URL'). '/uploads/' .$planInfo->plan_style_4 }}" class="img-fluid img-thumbnail" width="120" alt=""></td>
+                    <td>${{ $planInfo->plan_price }}</td>
                     <td width="120">
                         {!! Form::open(['route' => ['admin.planInfos.destroy', $planInfo->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>
@@ -32,11 +32,11 @@
                                 class='btn btn-default btn-xs'>
                                 <i class="far fa-edit"></i>
                             </a>
-                            {!! Form::button('<i class="far fa-trash-alt"></i>', [
+                            {{-- {!! Form::button('<i class="far fa-trash-alt"></i>', [
                                 'type' => 'button',
                                 'class' => 'btn btn-danger btn-xs',
                                 'onclick' => "return check(this);",
-                            ]) !!}
+                            ]) !!} --}}
                         </div>
                         {!! Form::close() !!}
                     </td>

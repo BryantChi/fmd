@@ -28,6 +28,15 @@
         <p>實績案例</p>
     </a>
 </li>
+
+<li class="nav-item">
+    <a href="{{ route('admin.caseCategoryInfos.index') }}"
+       class="nav-link {{ Request::is('admin/caseCategoryInfos*') ? 'active' : '' }}">
+       <span class="mr-2 brand-image"><i class="fas fa-info-circle"></i></span>
+        <p>實績分類管理</p>
+    </a>
+</li>
+
 <li class="nav-item">
     <a href="{{ route('admin.planInfos.index') }}"
        class="nav-link {{ Request::is('admin/planInfos*') ? 'active' : '' }}">
@@ -44,5 +53,4 @@
         <p>訂單紀錄</p>
     </a>
 </li>
-
 

@@ -38,21 +38,63 @@
                                     </tr>
                                 </thead>
                                 <tbody class="bg-light">
-                                    <tr>
-                                        <td>A方案 3-4坪</td>
-                                        <td>風格1</td>
-                                        <td>xxxxx</td>
-                                    </tr>
-                                    <tr>
-                                        <td>C方案 8-10坪</td>
-                                        <td>風格2 風格3</td>
-                                        <td>xxxxx</td>
-                                    </tr>
+                                    @php
+                                        $details = json_decode($orderInfo->order_details);
+                                    @endphp
+
+                                    @foreach ($details as $detail)
+                                        @php
+                                            $plan = DB::table('plan_infos')->whereNull('deleted_at')->where('id', $detail->id)->first();
+                                            $style = '';
+                                            switch ($detail->style) {
+                                                case 'styleA1':
+                                                case 'styleB1':
+                                                case 'styleC1':
+                                                case 'styleD1':
+                                                    $style = '風格1';
+                                                    break;
+
+                                                case 'styleA2':
+                                                case 'styleB2':
+                                                case 'styleC2':
+                                                case 'styleD2':
+                                                    $style = '風格2';
+                                                    break;
+
+                                                case 'styleA3':
+                                                case 'styleB3':
+                                                case 'styleC3':
+                                                case 'styleD3':
+                                                    $style = '風格3';
+                                                    break;
+
+                                                case 'styleA4':
+                                                case 'styleB4':
+                                                case 'styleC4':
+                                                case 'styleD4':
+                                                    $style = '風格4';
+                                                    break;
+
+                                                default:
+                                                    $style = '';
+                                                    break;
+                                            }
+
+                                            if ($style == '') {
+                                                continue;
+                                            }
+                                        @endphp
+                                        <tr>
+                                            <td>{{ ($plan->plan_name ?? '') . ' ' . ($plan->plan_sqm ?? '0 坪') }}</td>
+                                            <td>{{ $style }}</td>
+                                            <td>{{ $plan->plan_price ?? 0 }}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                                 <tfoot class="bg-light">
                                     <tr>
                                         <td colspan="3" class="text-right">
-                                            <h4 class="order-choice-price">總計NT$XXXXX</h4>
+                                            <h4 class="order-choice-price">總計NT${{ $orderInfo->amount.'' }}</h4>
                                         </td>
                                     </tr>
                                 </tfoot>
@@ -72,20 +114,7 @@
                 </div>
 
                 <div class="col-md-11 px-0 mx-0 mb-5">
-                    <div class="payment-info px-lg-5 px-3 py-lg-5 py-4 mb-5">
-                        <h4>【匯款資訊】</h4>
-                        <p>
-                            銀行名稱：XX銀行（代號：000）<br>
-
-                            匯款帳號：0000-0000-00000<br>
-
-                            戶名：FMD磁磚工隊<br>
-
-                            ※匯款完成之後請透過E-mail、LINE或是FB私訊留言聯絡我們，並提供「匯款帳號末五碼」之資訊以利查詢。<br>
-
-                            <span>※提醒您：為方便核對款項，請於來訊告知匯款資訊時，訂購人姓名及聯絡電話需與網站上的訂購資訊一致。</span>
-                        </p>
-                    </div>
+                    <x-payment-info/>
                 </div>
 
             </div>
